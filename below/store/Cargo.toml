@@ -31,7 +31,7 @@ lazy_static = "1.5"
 paste = "1.0.14"
 slog-term = "2.9.2"
 tempfile = "3.22"
-zstd = { version = "0.13", features = ["experimental", "zstdmt"] }
+zstd = { version = "0.13.3", features = ["experimental", "zstdmt"] }
 
 [features]
 no-vendor = ["zstd-safe/pkg-config", "zstd/pkg-config"]
