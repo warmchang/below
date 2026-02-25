@@ -105,10 +105,9 @@ impl BelowConfig {
             Ok(bc) => Ok(bc),
             Err(e) => {
                 bail!(
-                    "Failed to parse config file {}: {}\n{}",
+                    "Failed to parse config file {}: {}",
                     path.to_string_lossy(),
-                    e,
-                    string_config
+                    e.message()
                 );
             }
         }

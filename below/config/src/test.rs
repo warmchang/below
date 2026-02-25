@@ -118,7 +118,15 @@ fn test_config_load_failed() {
 
     match BelowConfig::load(&path) {
         Ok(_) => panic!("Below should not load since it is an invalid configuration file"),
-        Err(e) => assert!(format!("{}", e).starts_with("Failed to parse config file")),
+        Err(e) => {
+            let err_msg = format!("{}", e);
+            assert!(err_msg.starts_with("Failed to parse config file"));
+            // Ensure raw file contents are not leaked in the error message
+            assert!(
+                !err_msg.contains("demacia"),
+                "Error message should not contain raw file contents"
+            );
+        }
     }
 }
 

@@ -184,9 +184,9 @@ pub fn parse_pattern<T: FromStr>(
                     )
                 })
                 .to_owned(),
-            Err(e) => panic!("Failed to parse belowrc file: {:#}", e),
+            Err(e) => panic!("Failed to parse belowrc file: {}", e.message()),
         },
-        Err(e) => panic!("Failed to parse belowrc file: {:#}", e),
+        Err(e) => panic!("Failed to read belowrc file: {:#}", e),
     };
 
     Some(
@@ -206,11 +206,11 @@ pub fn parse_pattern<T: FromStr>(
             .iter()
             .map(|field| {
                 T::from_str(
-                    field.as_str().unwrap_or_else(|| {
-                        panic!("Failed to parse field key {} into string", field)
-                    }),
+                    field
+                        .as_str()
+                        .unwrap_or_else(|| panic!("Failed to parse field key into string")),
                 )
-                .map_err(|_| format!("Failed to parse field key: {}", field))
+                .map_err(|_| "Failed to parse field key".to_string())
                 .unwrap()
             })
             .collect(),

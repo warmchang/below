@@ -79,7 +79,7 @@ impl ViewRc {
                                 Some(format!(
                                     "Failed to parse belowrc::{}: {}",
                                     get_belowrc_view_section_key(),
-                                    e
+                                    e.message()
                                 )),
                             ),
                         }
@@ -89,7 +89,7 @@ impl ViewRc {
                 }
                 Err(e) => (
                     Default::default(),
-                    Some(format!("Failed to parse belowrc: {e}")),
+                    Some(format!("Failed to parse belowrc: {}", e.message())),
                 ),
             },
             _ => (Default::default(), None),

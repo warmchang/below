@@ -349,7 +349,7 @@ impl View {
                     .get(get_belowrc_cmd_section_key())
                     .map(|cmdrc| cmdrc.to_owned()),
                 Err(e) => {
-                    view_warn!(c, "Failed to parse belowrc: {}", e);
+                    view_warn!(c, "Failed to parse belowrc: {}", e.message());
                     None
                 }
             },
